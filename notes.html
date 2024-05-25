@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgb(141, 137, 195);
+        }
+
+        #addNote {
+            width: 200px;
+            height: 100px;
+            font-size: 30px;
+            background-color: #b8afaf;
+            border-radius: 300px;
+            border: navy;
+            margin-left: 10%;
+            margin-top: 20%;
+        }
+
+        .addForm {
+            padding: 23px;
+            width: 300px;
+            border-radius: 70px;
+            background-color: whitesmoke;
+            position: fixed;
+            left: 50%;
+            right: 50%;
+            transform: translate(-50%, 40%);
+            top: 5%;
+
+        }
+
+        .addForm input {
+            width: 90%;
+            height: 15px;
+            padding: 15px;
+            border: 2px solid black;
+            font-size: 25px;
+            border-radius: 5px;
+        }
+
+        .inputs {
+            margin-top: 22px;
+        }
+
+        textarea {
+            width: 90%;
+            padding: 10px;
+            font-size: 20px;
+        }
+
+        .inputs p {
+            font-size: 20px;
+        }
+
+        #addBtn {
+            width: 100%;
+            height: 40px;
+            background-color: #1a1313;
+            color: white;
+            font-size: 25px;
+            margin-top: 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .head {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .head button {
+            border: none;
+            background-color: transparent;
+            font-size: 35px;
+            cursor: pointer;
+
+        }
+        .myNote{
+            width: 200px;
+            height: 140px;
+            border-radius: 4px;
+            background-color: #fff;
+            margin-top: 50px;
+            font-size: 20px;
+            border: none;
+            padding: 11px;
+            margin-left: 150px;
+
+        }
+        .myNote p{
+            padding-top: 12px;
+            
+        }
+        .note{
+            display: flex;
+           
+        }
+        .newNotes{
+            display: flex;
+            gap: 20px;
+
+        }
+        .myNote button{
+            margin-top: 40px;
+            width: 100px;
+            height: 35px;
+            background-color: brown;
+            border-radius: 4px;
+            color: white;
+            position: fixed;
+            top: 120px;
+            font-size: 18px;
+            border: none;
+            cursor: pointer;
+           
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="note">
+            <div class="btn">
+                <button id="addNote"><i class="bi bi-plus-circle"></i> <br>Add Note</button>
+            </div>
+            <div class="newNotes">
+
+            </div>
+        </div>
+        <div class="addForm">
+            <div class="head">
+                <h2>Add note </h2>
+                <button class="icon"><i class="bi bi-trash"></i></button>
+            </div>
+            <div class="inputs">
+                <p>Title</p>
+                <input type="text" id="tittle" value="">
+                <div>
+                    <div class="inputs">
+                        <p>Discription</p>
+                        <textarea rows="5px" cols="27" id="Discription" value=""></textarea>
+                        <div>
+
+
+                        </div>
+                        <button id="addBtn">Add note</button>
+                    </div>
+                </div>
+                <script>
+                    let addNote = document.getElementById("addNote");
+                    let deleteIcon = document.querySelector(".icon");
+                    let addBtn = document.getElementById("addBtn");
+
+                    addNote.addEventListener("click", function () {
+                        document.querySelector(".addForm").style.display = "block"
+                        document.getElementById("tittle").value = "";
+                        document.getElementById("Discription").value = "";
+
+                    })
+
+                    deleteIcon.addEventListener("click", function () {
+                        document.querySelector(".addForm").style.display = "none"
+                    })
+
+                    addBtn.addEventListener("click", function () {
+
+                        document.querySelector(".addForm").style.display = "none"
+
+                        let div = document.createElement("div");
+                        div.classList.add("myNote");
+                        div.innerHTML = `
+                         <h2>${document.getElementById("tittle").value}</h2>
+                         <p>${document.getElementById("Discription").value}</p>
+                         <button>Delete</button>
+                         `
+                        div.querySelector("button").addEventListener("click", function(){
+                            div.remove();
+                        })
+                        document.querySelector(".newNotes").appendChild(div)
+                    })
+                </script>
+
+</body>
+
+</html>
